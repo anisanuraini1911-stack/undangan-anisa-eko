@@ -2165,3 +2165,66 @@ footer p {
     transition: none;
   }
 }
+
+
+/* ==========================================
+   BACKGROUND FOTO UNTUK ISI UNDANGAN
+   Menggunakan foto yang sama dengan halaman sampul
+========================================== */
+
+#invitation {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+#invitation::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      rgba(251, 248, 242, 0.48),
+      rgba(251, 248, 242, 0.64)
+    ),
+    url("assets/galeri-4.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Panel transparan agar foto terlihat tetapi tulisan tetap mudah dibaca */
+#invitation .section {
+  background-color: rgba(251, 248, 242, 0.84);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* Bagian hitung mundur dan penutup tetap bernuansa burgundy */
+#invitation .countdown-section {
+  background: rgba(84, 27, 41, 0.93);
+}
+
+#invitation .closing {
+  background: rgba(50, 16, 25, 0.93);
+}
+
+@media (max-width: 600px) {
+  #invitation::before {
+    background-position: center center;
+  }
+
+  #invitation .section {
+    background-color: rgba(251, 248, 242, 0.90);
+  }
+
+  #invitation .countdown-section {
+    background: rgba(84, 27, 41, 0.95);
+  }
+
+  #invitation .closing {
+    background: rgba(50, 16, 25, 0.95);
+  }
+}
