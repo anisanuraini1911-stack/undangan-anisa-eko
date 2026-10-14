@@ -1,0 +1,43 @@
+/* Animasi romantis yang pelan untuk setiap bagian undangan */
+.motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 38px, 0) scale(0.985);
+  filter: blur(2px);
+  transition:
+    opacity 2200ms ease var(--motion-delay, 0ms),
+    transform 2200ms cubic-bezier(0.16, 1, 0.3, 1) var(--motion-delay, 0ms),
+    filter 2200ms ease var(--motion-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.motion-reveal.motion-visible,
+.motion-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+/* Enam foto galeri muncul satu per satu dari atas ke bawah */
+.gallery-grid img.motion-reveal {
+  transform: translate3d(0, -42px, 0) scale(0.985);
+  filter: blur(2px);
+}
+
+.gallery-grid img.motion-reveal.motion-visible {
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reveal,
+  .motion-reveal.motion-visible,
+  .motion-visible,
+  .gallery-grid img.motion-reveal,
+  .gallery-grid img.motion-reveal.motion-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
