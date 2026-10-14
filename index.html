@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Undangan Pernikahan | Nama Mempelai</title>
+  <meta name="description" content="Undangan pernikahan kami. Merupakan suatu kehormatan bagi kami atas kehadiran dan doa Anda.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- MUSIK LATAR -->
+  <audio id="weddingMusic" loop>
+    <source src="assets/musik.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- SAMPUL -->
+  <section id="cover" class="cover">
+    <div class="cover-content">
+      <p class="eyebrow">THE WEDDING OF</p>
+      <div class="ornament">❧ ❦ ❧</div>
+
+      <h1>Anisa <span>&</span> Eko</h1>
+
+      <p class="cover-date">Sabtu, 20 November 2027</p>
+
+      <p class="guest-label">Kepada Yth.</p>
+      <h3 id="guestName">Bapak/Ibu/Saudara/i</h3>
+      <p class="guest-note">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di hari bahagia kami.</p>
+
+      <button id="openInvitation" class="btn btn-gold">
+        ✉ Buka Undangan
+      </button>
+    </div>
+  </section>
+
+  <!-- KONTEN UTAMA -->
+  <main id="invitation" class="hidden">
+
+    <!-- PEMBUKA -->
+    <section class="section intro">
+      <p class="eyebrow">ASSALAMUALAIKUM WARAHMATULLAHI WABARAKATUH</p>
+      <div class="ornament">❧ ❦ ❧</div>
+
+      <h2>Dengan Memohon Rahmat dan Ridho Allah SWT</h2>
+
+      <p>
+        Dengan penuh rasa syukur, kami bermaksud menyelenggarakan
+        pernikahan putra-putri kami. Merupakan suatu kebahagiaan
+        bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
+        untuk memberikan doa restu.
+      </p>
+    </section>
+
+    <!-- MEMPELAI -->
+    <section class="section couple">
+      <p class="eyebrow">KEDUA MEMPELAI</p>
+      <h2>Ikatan Suci</h2>
+
+      <div class="couple-grid">
+        <article class="person">
+          <div class="photo-frame">
+            <img src="assets/icha.jpeg"
+                 alt="Foto mempelai wanita"
+                 class="couple-photo">
+          </div>
+          <h3>Anisa Nuraini, S.M</h3>
+          <p>Putri dari</p>
+          <p>Bapak Edeng & Ibu Sukaemah</p>
+        </article>
+
+        <div class="ampersand">&</div>
+
+        <article class="person">
+          <div class="photo-frame">
+            <img src="assets/mas.jpeg"
+                 alt="Foto mempelai pria"
+                 class="couple-photo">
+          </div>
+          <h3>Eko Saputro, S.T</h3>
+          <p>Putra dari</p>
+          <p>Bapak Nama Ayah & Ibu Nama Ibu</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- AYAT -->
+    <section class="section quote">
+      <div class="ornament">❧</div>
+      <p class="arabic">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا</p>
+      <p>
+        “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia
+        menciptakan untukmu pasangan hidup dari jenismu sendiri.”
+      </p>
+      <p class="reference">QS. Ar-Rum: 21 (penggalan ayat)</p>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section class="section countdown-section">
+      <p class="eyebrow">SAVE THE DATE</p>
+      <h2>Menuju Hari Bahagia</h2>
+
+      <div class="countdown">
+        <div><strong id="days">00</strong><span>Hari</span></div>
+        <div><strong id="hours">00</strong><span>Jam</span></div>
+        <div><strong id="minutes">00</strong><span>Menit</span></div>
+        <div><strong id="seconds">00</strong><span>Detik</span></div>
+      </div>
+    </section>
+
+    <!-- ACARA -->
+    <section class="section events">
+      <p class="eyebrow">WAKTU & TEMPAT</p>
+      <h2>Rangkaian Acara</h2>
+
+      <div class="event-card">
+        <div class="event-icon">❦</div>
+        <h3>Akad Nikah</h3>
+        <p><strong>Sabtu, 20 November 2027</strong></p>
+        <p>Pukul 10.00 WIB – selesai</p>
+        <div class="divider"></div>
+        <p>Rumah Mempelai Wanita</p>
+        <p>Alamat lengkap lokasi acara</p>
+        <a class="btn btn-outline"
+           href="https://maps.google.com/?q=Sr agen"
+           target="_blank" rel="noopener">
+          Lihat Lokasi
+        </a>
+      </div>
+
+      <div class="event-card">
+        <div class="event-icon">❦</div>
+        <h3>Resepsi</h3>
+        <p><strong>Sabtu, 20 November 2027</strong></p>
+        <p>Pukul 11.00–14.00 WIB</p>
+        <div class="divider"></div>
+        <p>Rumah Mempelai Wanita</p>
+        <p>Alamat lengkap lokasi acara</p>
+        <a class="btn btn-outline"
+           href="https://maps.google.com/?q=Sragen"
+           target="_blank" rel="noopener">
+          Lihat Lokasi
+        </a>
+      </div>
+    </section>
+
+    <!-- GALERI -->
+    <section class="section gallery">
+      <p class="eyebrow">MOMEN BAHAGIA</p>
+      <h2>Galeri Kami</h2>
+      <p>Sepenggal cerita menuju perjalanan baru kami.</p>
+
+      <div class="gallery-grid">
+        <img src="assets/foto-mempelai.jpg" alt="Foto kenangan 1">
+        <img src="assets/foto-mempelai.jpg" alt="Foto kenangan 2">
+        <img src="assets/foto-mempelai.jpg" alt="Foto kenangan 3">
+      </div>
+    </section>
+
+    <!-- HADIAH -->
+    <section class="section gift">
+      <p class="eyebrow">TANDA KASIH</p>
+      <h2>Hadiah Pernikahan</h2>
+      <p>
+        Doa restu Anda merupakan hadiah terindah bagi kami.
+        Namun, apabila ingin berbagi tanda kasih, dapat melalui:
+      </p>
+
+      <div class="gift-card">
+        <p class="eyebrow">BANK</p>
+        <h3 id="bankName">BCA</h3>
+        <p id="accountNumber" class="account-number">1234567890</p>
+        <p>a.n. Anisa Nuraini</p>
+        <button class="btn btn-outline" id="copyAccount">
+          Salin Nomor Rekening
+        </button>
+      </div>
+    </section>
+
+    <!-- RSVP & UCAPAN -->
+    <section class="section rsvp">
+      <p class="eyebrow">KONFIRMASI KEHADIRAN</p>
+      <h2>Mohon Konfirmasi</h2>
+      <p>Silakan isi data berikut untuk mengirim konfirmasi melalui WhatsApp.</p>
+
+      <form id="rsvpForm">
+        <label for="name">Nama</label>
+        <input type="text" id="name" placeholder="Nama Anda" required>
+
+        <label for="attendance">Konfirmasi kehadiran</label>
+        <select id="attendance" required>
+          <option value="">Pilih jawaban</option>
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak dapat hadir">Tidak dapat hadir</option>
+        </select>
+
+        <label for="message">Ucapan dan doa</label>
+        <textarea id="message" rows="4" placeholder="Tuliskan doa untuk kedua mempelai..."></textarea>
+
+        <button type="submit" class="btn btn-gold">
+          Kirim via WhatsApp
+        </button>
+      </form>
+    </section>
+
+    <!-- PENUTUP -->
+    <section class="section closing">
+      <div class="ornament">❧ ❦ ❧</div>
+      <h2>Merupakan Kehormatan bagi Kami</h2>
+      <p>
+        Atas kehadiran, doa, dan restu yang diberikan,
+        kami mengucapkan terima kasih.
+      </p>
+      <p>Wassalamualaikum Warahmatullahi Wabarakatuh</p>
+      <h2>Anisa & Eko</h2>
+    </section>
+
+    <footer>
+      <p>Made with love ♡</p>
+    </footer>
+
+  </main>
+
+  <!-- TOMBOL MUSIK -->
+  <button id="musicToggle" class="music-toggle hidden"
+          aria-label="Putar atau jeda musik">
+    ♫
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
