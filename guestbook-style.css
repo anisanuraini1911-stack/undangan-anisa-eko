@@ -1,0 +1,48 @@
+
+/* Tambahan tampilan buku tamu Firebase */
+.rsvp-status {
+  margin: 14px 0;
+  color: #7a263a;
+  font-size: 0.95rem;
+}
+.guestbook {
+  margin-top: 36px;
+  text-align: left;
+}
+.guestbook h3 {
+  text-align: center;
+}
+.guestbook-intro {
+  text-align: center;
+}
+.guestbook-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+.guestbook-card {
+  padding: 16px;
+  border: 1px solid rgba(150, 110, 90, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  overflow-wrap: anywhere;
+}
+.guestbook-card-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.guestbook-attendance {
+  font-size: 0.82rem;
+  color: #7a263a;
+  text-align: right;
+}
+.guestbook-message {
+  margin: 10px 0 0;
+  white-space: pre-wrap;
+}
+#rsvpForm button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
