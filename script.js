@@ -1,149 +1,95 @@
+/* SCRIPT UNDANGAN ANISA & EKO */
+(() => {
+  "use strict";
+  const byId = (id) => document.getElementById(id);
+  const weddingDate = new Date(2027, 10, 20, 10, 0, 0); // 20 November 2027, 10.00 WIB
+  const whatsappNumber = "6281234567890"; // Ganti dengan nomor WhatsApp tujuan yang benar
 
-/* =====================================
-   PENGATURAN UNDANGAN
-===================================== */
+  function init() {
+    const cover = byId("cover");
+    const invitation = byId("invitation");
+    const openButton = byId("openInvitation");
+    const music = byId("weddingMusic");
+    const musicToggle = byId("musicToggle");
+    const guestNameElement = byId("guestName");
 
-// Ganti dengan tanggal dan jam acara yang sebenarnya.
-// Format: Tahun, Bulan (0 = Januari), Tanggal, Jam, Menit
-const weddingDate = new Date(2026, 11, 20, 8, 0, 0);
-
-// Ganti dengan nomor WhatsApp kamu.
-// Gunakan kode negara 62, tanpa tanda + atau angka 0 di depan.
-const whatsappNumber = "6281234567890";
-
-
-/* =====================================
-   NAMA TAMU DARI LINK
-===================================== */
-
-const params = new URLSearchParams(window.location.search);
-const guestName = params.get("to");
-
-const guestNameElement = document.getElementById("guestName");
-
-if (guestName) {
-  guestNameElement.textContent = guestName;
-}
-
-
-/* =====================================
-   BUKA UNDANGAN
-===================================== */
-
-const cover = document.getElementById("cover");
-const invitation = document.getElementById("invitation");
-const openButton = document.getElementById("openInvitation");
-const music = document.getElementById("weddingMusic");
-const musicToggle = document.getElementById("musicToggle");
-
-openButton.addEventListener("click", async () => {
-  cover.classList.add("hidden");
-  invitation.classList.remove("hidden");
-  musicToggle.classList.remove("hidden");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-  // Browser mungkin menolak audio jika file belum tersedia.
-  try {
-    await music.play();
-    musicToggle.textContent = "♫";
-  } catch (error) {
-    console.log("Musik belum dapat diputar:", error);
-  }
-});
-
-
-/* =====================================
-   TOMBOL MUSIK
-===================================== */
-
-musicToggle.addEventListener("click", async () => {
-  if (music.paused) {
-    try {
-      await music.play();
-      musicToggle.textContent = "♫";
-    } catch (error) {
-      alert("Musik belum dapat diputar. Periksa file musik.mp3.");
+    if (!cover || !invitation || !openButton) {
+      console.error("Elemen undangan tidak ditemukan. Pastikan index.html yang dipakai adalah versi terbaru.");
+      return;
     }
-  } else {
-    music.pause();
-    musicToggle.textContent = "♪";
+
+    // Nama tamu dari URL, contoh: ?to=Keluarga%20Bapak
+    const guestName = new URLSearchParams(window.location.search).get("to");
+    if (guestNameElement && guestName) guestNameElement.textContent = guestName;
+
+    // Delegasi klik membuat tombol tetap berfungsi walau ada animasi dekoratif.
+    document.addEventListener("click", async (event) => {
+      const target = event.target instanceof Element ? event.target.closest("#openInvitation") : null;
+      if (!target) return;
+      event.preventDefault();
+      cover.classList.add("hidden");
+      invitation.classList.remove("hidden");
+      if (musicToggle) musicToggle.classList.remove("hidden");
+      document.body.classList.add("invitation-open");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (music) {
+        try { await music.play(); }
+        catch (error) { console.info("Musik tidak diputar otomatis; pengunjung bisa menekan tombol musik.", error); }
+      }
+    });
+
+    if (musicToggle && music) {
+      musicToggle.addEventListener("click", async () => {
+        if (music.paused) {
+          try { await music.play(); musicToggle.textContent = "♫"; }
+          catch (error) { alert("Musik belum bisa diputar. Pastikan file assets/musik.mp3 tersedia."); }
+        } else {
+          music.pause(); musicToggle.textContent = "♪";
+        }
+      });
+    }
+
+    // Hitung mundur menuju akad.
+    const days = byId("days"), hours = byId("hours"), minutes = byId("minutes"), seconds = byId("seconds");
+    function updateCountdown() {
+      if (!days || !hours || !minutes || !seconds) return;
+      const diff = weddingDate.getTime() - Date.now();
+      const safe = Math.max(0, diff);
+      days.textContent = String(Math.floor(safe / 86400000)).padStart(2, "0");
+      hours.textContent = String(Math.floor((safe / 3600000) % 24)).padStart(2, "0");
+      minutes.textContent = String(Math.floor((safe / 60000) % 60)).padStart(2, "0");
+      seconds.textContent = String(Math.floor((safe / 1000) % 60)).padStart(2, "0");
+    }
+    updateCountdown(); setInterval(updateCountdown, 1000);
+
+    // Salin nomor rekening.
+    const copyButton = byId("copyAccount");
+    if (copyButton) copyButton.addEventListener("click", async () => {
+      const account = (byId("accountNumber")?.textContent || "").trim();
+      if (!account) return;
+      try {
+        await navigator.clipboard.writeText(account);
+        copyButton.textContent = "Nomor Berhasil Disalin!";
+      } catch (error) {
+        window.prompt("Salin nomor rekening berikut:", account);
+      }
+      setTimeout(() => { copyButton.textContent = "Salin Nomor Rekening"; }, 2500);
+    });
+
+    // RSVP ke WhatsApp. Bila file Firebase juga mengelola formulir ini,
+    // hindari menggandakan handler di firebase-guestbook.js.
+    const rsvpForm = byId("rsvpForm");
+    if (rsvpForm) rsvpForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = (byId("name")?.value || "").trim();
+      const attendance = byId("attendance")?.value || "";
+      const message = (byId("message")?.value || "").trim();
+      if (!name || !attendance) { alert("Mohon isi nama dan konfirmasi kehadiran."); return; }
+      const body = ["Assalamu'alaikum, saya ingin mengonfirmasi undangan pernikahan.", "", "Nama: " + name, "Konfirmasi: " + attendance, "Ucapan dan doa: " + (message || "-"), "", "Terima kasih."].join("\n");
+      window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(body), "_blank", "noopener,noreferrer");
+    });
   }
-});
 
-
-/* =====================================
-   COUNTDOWN
-===================================== */
-
-const daysElement = document.getElementById("days");
-const hoursElement = document.getElementById("hours");
-const minutesElement = document.getElementById("minutes");
-const secondsElement = document.getElementById("seconds");
-
-function updateCountdown() {
-  const now = new Date();
-  const difference = weddingDate.getTime() - now.getTime();
-
-  if (difference <= 0) {
-    daysElement.textContent = "00";
-    hoursElement.textContent = "00";
-    minutesElement.textContent = "00";
-    secondsElement.textContent = "00";
-    return;
-  }
-
-  const days = Math.floor(
-    difference / (1000 * 60 * 60 * 24)
-  );
-
-  const hours = Math.floor(
-    (difference / (1000 * 60 * 60)) % 24
-  );
-
-  const minutes = Math.floor(
-    (difference / (1000 * 60)) % 60
-  );
-
-  const seconds = Math.floor(
-    (difference / 1000) % 60
-  );
-
-  daysElement.textContent = String(days).padStart(2, "0");
-  hoursElement.textContent = String(hours).padStart(2, "0");
-  minutesElement.textContent = String(minutes).padStart(2, "0");
-  secondsElement.textContent = String(seconds).padStart(2, "0");
-}
-
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-
-/* =====================================
-   SALIN NOMOR REKENING
-===================================== */
-
-const copyButton = document.getElementById("copyAccount");
-
-copyButton.addEventListener("click", async () => {
-  const accountNumber = document
-    .getElementById("accountNumber")
-    .textContent.trim();
-
-  try {
-    await navigator.clipboard.writeText(accountNumber);
-    copyButton.textContent = "Nomor Berhasil Disalin!";
-  } catch (error) {
-    // Cadangan jika Clipboard API tidak tersedia.
-    window.prompt("Salin nomor rekening berikut:", accountNumber);
-  }
-
-  setTimeout(() => {
-    copyButton.textContent = "Salin Nomor Rekening";
-  }, 2500);
-});
-
-
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();
