@@ -13,8 +13,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="section-motion.css">
   <link rel="stylesheet" href="guestbook-style.css">
+  <link rel="stylesheet" href="section-motion.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
       <h3 id="guestName">Bapak/Ibu/Saudara/i</h3>
       <p class="guest-note">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di hari bahagia kami.</p>
 
-      <button id="openInvitation" class="btn btn-gold">
+      <button type="button" id="openInvitation" class="btn btn-gold" style="position:relative; z-index:20; pointer-events:auto;">
         ✉ Buka Undangan
       </button>
     </div>
@@ -293,8 +293,8 @@
     ♫
   </button>
 
-  <script src="script.js"></script>
-  <script type="module" src="firebase-guestbook.js"></script>
   <script src="section-motion.js" defer></script>
+  <script type="module" src="firebase-guestbook.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
